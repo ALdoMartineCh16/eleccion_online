@@ -94,3 +94,70 @@ class UserRepository {
 
 export default UserRepository;
 ```
+
+//Codificacion legible 
+
+1 Conditional Rendering:
+Se utiliza para mostrar o ocultar elementos del DOM en función de ciertas condiciones. En el código de index.js esta práctica se aplica en la línea donde se verifica si 'candidatos.length > 0', y en función de esta condición, se renderiza una   tabla con los candidatos o se muestra un mensaje de "Vacio" cuando no hay candidatos.
+```bash
+// Conditional Rendering
+{candidatos.length > 0 ? (
+  // Renderiza la tabla cuando hay candidatos
+  <table className="table mt-4">
+    ...
+  </table>
+) : (
+  // Muestra "Vacio" si no hay candidatos
+  <div>Vacio</div>
+)}  
+```
+
+2 State Management (useState):
+Esta practica de codigo legible se aplica utilizando el hook useState para manejar el estado de la variable candidatos y page. La función setCandidatos se utiliza para actualizar el estado de candidatos y setPage para actualizar el estado de page.
+```bash
+// State Management (useState)
+const [candidatos, setCandidatos] = useState([]);
+const [page, setPage] = useState(1);
+```
+
+3 Side Effect (useEffect):
+La práctica de "Side Effect" se utiliza mediante el hook useEffect, que se encarga de realizar una acción secundaria una vez que el componente ha sido renderizado. En este caso, useEffect se utiliza para llamar a la función getCandidatos cuando cambia el valor de page el cual se creo por un estilo de programacion mencionado anteriormente, para cargar los candidatos de manera paginada.
+```bash
+// Side Effect (useEffect)
+useEffect(() => {
+  getCandidatos();
+}, [page]);
+```
+
+4 Fetching Data from an API (axios)
+La práctica de "Fetching Data from an API" se realiza usando la biblioteca Axios para realizar llamadas HTTP a la API que devuelve los datos de los candidatos. Axios se utiliza en la función 'getCandidatos' para realizar una solicitud GET con paginación.
+```bash
+// Fetching Data from an API (axios)
+const getCandidatos = async () => {
+  try {
+    const res = await axios.get(`/api/candidatos/?page=${page}&pageSize=${pageSize}`);
+    // ...
+  } catch (error) {
+    console.error("Error fetching candidates:", error);
+  }
+};
+```
+
+5 Dynamic Rendering (Mapping Data)
+Se aplica mediante el uso de la función 'map' para iterar sobre el array 'candidatos' y generar dinámicamente las filas de la tabla. Esto permite representar cada candidato en la tabla sin tener que escribir manualmente cada fila.
+```bash
+
+// Dynamic Rendering (Mapping Data)
+<tbody>
+  {candidatos.map((e, index) => {
+    if (e.nombre_partido !== 'Nulo' && e.cargo === "Presidente") {
+      return (
+        // Representa la fila de la tabla para cada candidato que coincida con la condición
+        <tr key={index}>
+          {/* ... */}
+        </tr>
+      );
+    }
+  })}
+</tbody>
+´´´

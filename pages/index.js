@@ -4,14 +4,15 @@ import Head from 'next/head';
 import axios from 'axios';
 import UserRepository from "@/ldavis/Data/Repositorio/UserRepository";
 export default function IndexPage() {
+  //State Managenet (useState)
   const [candidatos, setCandidatos] = useState([]);
   const [page, setPage] = useState(1);
   const pageSize = 10;
-
+  //Side Effect (useEffect):
   useEffect(() => {
     getCandidatos();
   }, [page]);
-
+  // Fetching Data from an API (axios)
   const getCandidatos = async () => {
     try {
       const res = await axios.get(`/api/candidatos/?page=${page}&pageSize=${pageSize}`);
