@@ -1,6 +1,7 @@
 Alumno: Aldo Raul Martinez Choque
 
-Es
+Estilos de progmacion que fueron aplicados en api/index.js y Data/Repositorio/UserRepository.js
+
 07-code-golf: Simplificamos la función getCandidatos eliminando comentarios y utilizando la sintaxis de funciones de flecha de forma más concisa.
 ```bash
 const res = await axios.get(`/api/candidatos/?page=${page}&pageSize=${pageSize}`);
